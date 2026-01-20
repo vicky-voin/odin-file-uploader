@@ -5,6 +5,7 @@ async function populateWithTestData() {
     data: {
       name: "Alice",
       email: "alice@test.com",
+      passwoed: process.env.TEST_PASSWORD,
     },
   });
 
