@@ -9,10 +9,11 @@
   <body>
     <h1>Error</h1>
     <p>
-      <%= error && error.message ? error.message : 'An error has occurred.' %>
+      Something went wrong!
     </p>
     <% if (error && error.stack) { %>
     <pre><%= error.stack %></pre>
     <% } %>
+    <a href="/">Back to homepage</a>
   </body>
 </html>

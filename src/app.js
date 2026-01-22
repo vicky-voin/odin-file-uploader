@@ -82,6 +82,10 @@ app.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render("errorPage", { error: err });
+});
 
 app.listen(3000, (error) => {
   if (error) {
