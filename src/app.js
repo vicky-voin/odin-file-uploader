@@ -1,7 +1,7 @@
 const path = require("node:path");
 const express = require("express");
 const passport = require("passport");
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
@@ -12,6 +12,7 @@ const userModel = require("./models/user");
 const indexRouter = require("./routes/indexRouter");
 const signUpRouter = require("./routes/signUpRouter");
 const loginRouter = require("./routes/loginRouter");
+const folderRouter = require("./routes/folderRouter.js");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -71,6 +72,7 @@ passport.deserializeUser(async (id, done) => {
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
+app.use("/folder", folderRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/login", loginRouter);
 app.get("/logout", (req, res, next) => {

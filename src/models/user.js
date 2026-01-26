@@ -5,6 +5,9 @@ exports.getWithId = async (userId) => {
     where: {
       id: userId,
     },
+    include: {
+      folders: true,
+    },
   });
 
   return user;
