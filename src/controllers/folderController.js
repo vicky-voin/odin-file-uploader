@@ -2,7 +2,7 @@ const folder = require("../models/folder.js");
 
 exports.createNewFolder = async (req, res, next) => {
   try {
-    const result = folder.create(req.body.name, req.user.id);
+    const result = await folder.create(req.body.name, req.user.id);
 
     res.redirect("/");
   } catch (err) {
@@ -12,7 +12,7 @@ exports.createNewFolder = async (req, res, next) => {
 
 exports.deleteFolder = async (req, res, next) => {
   try {
-    const result = folder.delete(req.body.folderId, req.user.id);
+    const result = await folder.delete(+req.params.folderId, req.user.id);
 
     res.redirect("/");
   } catch (err) {
@@ -22,7 +22,7 @@ exports.deleteFolder = async (req, res, next) => {
 
 exports.renameFolder = async (req, res, next) => {
   try {
-    const result = folder.rename(req.body.name, req.body.id);
+    const result = await folder.rename(req.body.name, +req.params.folderId);
 
     res.redirect("/");
   } catch (err) {

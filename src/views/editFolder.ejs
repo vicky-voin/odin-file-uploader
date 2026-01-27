@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Edit a folder</h1>
-    <form action="/folder/edit" method="POST">
+    <form action="/folder/<%= folderId %>/edit" method="POST">
       <label for="name">New name:</label>
       <input type="text" id="name" name="name"></input>
       <%- include("partials/errors.ejs") %>

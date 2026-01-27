@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Delete folder</h1>
-    <form action="/folder/delete" method="POST">
+    <form action="/folder/<%= folderId %>/delete" method="POST">
       <label>Are you sure you want to delete the folder?</label>
       <button type="submit">Delete</button>
       <a href="/">Back</a>
