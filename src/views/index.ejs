@@ -17,8 +17,6 @@
 
     <a href="/folder/new">Create folder</a>
 
-    
-
     <ul>
        <% folders.forEach(folder => { %>
       <li>
@@ -28,9 +26,11 @@
         <% const folderEditRoute = folderBaseRoute + "/edit"; %>
         <a href=<%= folderDeleteRoute %>>Delete</a>
         <a href=<%= folderEditRoute %>>Edit</a>
-        <% folder.files.forEach(file => { %>
-          <div><%= file.name %></div>
-        <% }); %>
+        <div>
+          <% folder.files.forEach(file => { %>
+            <a href="/file/<%= file.id %>"><%= file.name %></a>
+          <% }); %>
+        </div>
         <form action="/" method="post" enctype="multipart/form-data">
           <label for="image">Upload your image below:</label>
           <input type="file" id="image" name="image"/>

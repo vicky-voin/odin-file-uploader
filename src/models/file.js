@@ -10,3 +10,13 @@ exports.create = async (fileName, fileSize, folderId) => {
     },
   });
 };
+
+exports.get = async (fileId) => {
+  const result = await prisma.file.findUnique({
+    where: {
+      id: +fileId,
+    },
+  });
+
+  return result;
+};

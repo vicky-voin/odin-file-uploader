@@ -13,6 +13,7 @@ const indexRouter = require("./routes/indexRouter");
 const signUpRouter = require("./routes/signUpRouter");
 const loginRouter = require("./routes/loginRouter");
 const folderRouter = require("./routes/folderRouter.js");
+const fileRouter = require("./routes/fileRouter.js");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -73,6 +74,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
 app.use("/folder", folderRouter);
+app.use("/file", fileRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/login", loginRouter);
 app.get("/logout", (req, res, next) => {
