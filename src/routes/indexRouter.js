@@ -5,8 +5,12 @@ const folder = require("../models/folder");
 const indexRouter = Router();
 
 indexRouter.get("/", async (req, res) => {
-  const folders = await folder.getAllForUser(req.user.id);
-  res.render("index", { user: req.user, folders: folders });
+  if (!req.user) {
+    res.render("index", { user: undefined, folders: [] });
+  } else {
+    const folders = await folder.getAllForUser(req.user.id);
+    res.render("index", { user: req.user, folders: folders });
+  }
 });
 
 indexRouter.post("/", processUpload);
