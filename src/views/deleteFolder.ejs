@@ -9,7 +9,10 @@
   <body>
     <h1>Delete folder</h1>
     <form action="/folder/<%= folderId %>/delete" method="POST">
-      <label>Are you sure you want to delete the folder?</label>
+      <label
+        >Are you sure you want to delete the folder? (This action will also
+        delete all files in this folder)</label
+      >
       <button type="submit">Delete</button>
       <a href="/">Back</a>
     </form>

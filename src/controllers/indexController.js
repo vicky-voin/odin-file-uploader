@@ -1,12 +1,21 @@
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
+const file = require("../models/file.js");
 
 exports.processUpload = [
   upload.single("image"),
-  function (req, res, next) {
-    //req.file for file
-    //req.body for txt fields
+  async function (req, res, next) {
     console.log(req.file, req.body);
-    res.redirect("/");
+    try {
+      const result = await file.create(
+        req.file.filename,
+        req.file.size,
+        req.body.folderId,
+      );
+
+      res.redirect("/");
+    } catch (err) {
+      next(err);
+    }
   },
 ];
