@@ -1,4 +1,5 @@
 const folder = require("../models/folder.js");
+const File = require("../models/file.js");
 
 exports.createNewFolder = async (req, res, next) => {
   try {
@@ -12,6 +13,7 @@ exports.createNewFolder = async (req, res, next) => {
 
 exports.deleteFolder = async (req, res, next) => {
   try {
+    const fileDeleteResult = await File.deleteInFolder(+req.params.folderId);
     const result = await folder.delete(+req.params.folderId, req.user.id);
 
     res.redirect("/");

@@ -28,7 +28,10 @@
         <a href=<%= folderEditRoute %>>Edit</a>
         <div>
           <% folder.files.forEach(file => { %>
-            <a href="/file/<%= file.id %>"><%= file.name %></a>
+            <div>
+              <img style="display: block;" height="100px" src="<%= file.url %>">
+              <a href="/file/<%= file.id %>"><%= file.name %></a>
+            </div>
           <% }); %>
         </div>
         <form action="/" method="post" enctype="multipart/form-data">

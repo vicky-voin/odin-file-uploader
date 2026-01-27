@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { processUpload } = require("../controllers/indexController");
+const { uploadFile } = require("../controllers/fileController");
 const folder = require("../models/folder");
 
 const indexRouter = Router();
@@ -13,6 +13,6 @@ indexRouter.get("/", async (req, res) => {
   }
 });
 
-indexRouter.post("/", processUpload);
+indexRouter.post("/", uploadFile);
 
 module.exports = indexRouter;

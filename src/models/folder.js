@@ -1,4 +1,5 @@
 const { prisma } = require("../../lib/prisma");
+const File = require("../models/file");
 
 exports.get = async (folderId) => {
   const folder = await prisma.folder.findUnique({
@@ -62,18 +63,11 @@ exports.addFile = async (fileId, folderId) => {
 };
 
 exports.delete = async (folderId, userId) => {
-  const deleteFiles = prisma.file.deleteMany({
-    where: {
-      folderId: folderId,
-    },
-  });
-
-  const deleteFolder = prisma.folder.delete({
+  await File.deleteInFolder(folderId);
+  const result = await prisma.folder.delete({
     where: {
       id: folderId,
       ownerId: userId,
     },
   });
-
-  const transaction = await prisma.$transaction([deleteFiles, deleteFolder]);
 };
