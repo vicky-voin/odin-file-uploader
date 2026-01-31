@@ -16,5 +16,8 @@
     "pg": "^8.17.1",
     "prisma": "^7.2.0"
   },
-  "main": "src/app.js"
+  "main": "src/app.js",
+  "scripts": {
+    "postinstall": "npx prisma migrate deploy && npx prisma generate"
+  }
 }
