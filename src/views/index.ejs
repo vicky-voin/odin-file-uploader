@@ -38,6 +38,7 @@
           <label for="image">Upload your image below:</label>
           <input type="file" id="image" name="image"/>
           <input type="hidden" id="folderId" name="folderId" value="<%= folder.id %>">
+          <%- include("partials/errors.ejs") %>
           <input type="submit" value="Upload">
         </form>
       </li>

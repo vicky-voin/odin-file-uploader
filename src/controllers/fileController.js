@@ -1,12 +1,26 @@
 const multer = require("multer");
 const fs = require("fs");
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, fileFilter: uploadFitlerImages });
 const File = require("../models/file.js");
 const { createClient } = require("@supabase/supabase-js");
 const dotenv = require("dotenv").config();
 const supabase = createClient(process.env.STORAGE_URL, process.env.STORAGE_KEY);
 const BUCKET_NAME = "images";
+
+function uploadFitlerImages(req, file, cb) {
+  const IMAGE_FORMATS = [".jpg", ".jpeg", ".png", ".svg"];
+  if (IMAGE_FORMATS.some((format) => file.originalname.endsWith(format))) {
+    cb(null, true);
+  } else {
+    cb(
+      new Error(
+        "Please make sure the file has one of the following formats: " +
+          IMAGE_FORMATS,
+      ),
+    );
+  }
+}
 
 exports.renderFileDetails = async (req, res, next) => {
   const file = await File.get(req.params.fileId);
@@ -55,7 +69,7 @@ exports.uploadFile = [
         req.body.folderId,
       );
 
-      res.redirect("/");
+      next();
     } catch (err) {
       next(err);
     }
