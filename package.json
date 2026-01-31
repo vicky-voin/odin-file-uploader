@@ -18,6 +18,6 @@
   },
   "main": "src/app.js",
   "scripts": {
-    "postinstall": "npx prisma migrate deploy && npx prisma generate"
+    "postinstall": "npx prisma generate"
   }
 }
